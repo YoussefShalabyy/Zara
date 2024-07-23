@@ -1,38 +1,83 @@
+import React, { useState, useEffect } from "react";
 import {
-  View,
-  Text,
   SafeAreaView,
-  TextInput,
-  StyleSheet,
   ScrollView,
-  TouchableOpacity,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
-import React, { useState } from "react";
-import Input from "../../components/Input";
 import Search from "../../components/Search";
-import Categories from "../../components/Categories";
+import colors from "../../constants/colors";
+import OffersContainer from "../../components/offersContainer";
+import OffersToggeled from "../../components/offersToggeled";
+import Slider from "../../components/Slider";
+
+import { useCustomFonts } from "../../constants/fonts";
+import { db } from "../../firebase/config";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import ShopByCategory from "../../components/ShopByCategory";
+import Trending from "../../components/Trending";
+import Recommended from "../../components/Recommended";
 
 export default function Home() {
-  const [key, setKey] = useState("");
-  
+  const [searchKey, setSearchKey] = useState("");
+  const [toggleOffers, setToggleOffers] = useState(false);
+  const loaded = useCustomFonts();
+  if (!loaded) {
+    return null;
+  }
+
+  async function getCloths() {
+    const querySnapshot = await getDocs(collection(db, "cloth"));
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+    });
+  }
+  const [trending, setTrending] = useState([]);
+  const getTrending = async () => {
+    const q = query(collection(db, "cloth"), where("isTrending", "==", true));
+    const fetchedTrending = [];
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      const clothData = doc.data();
+      clothData.docId = doc.id;
+      fetchedTrending.push(clothData);
+    });
+    setTrending(fetchedTrending);
+  };
+
   return (
-    <SafeAreaView>
-      <Search onChangetext={setKey} value={key} />
-      <Categories/>
-    </SafeAreaView>
+    <View style={styles.outerContainer}>
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.text}>Zara</Text>
+        <Search value={searchKey} onChangeText={setSearchKey} />
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <OffersContainer
+            onPress={() => setToggleOffers(!toggleOffers)}
+            toggleOffers={toggleOffers}
+          />
+          <OffersToggeled toggleOffers={toggleOffers} />
+          <Slider />
+          <ShopByCategory />
+          <Trending />
+          <Recommended />
+        </ScrollView>
+      </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  search: {
-    alignItems: "center",
-    width: "90%",
-    marginLeft: "5%",
-    flexDirection: "row",
-    backgroundColor: "white",
-    borderRadius: 30,
-    padding: "3%",
-    gap: "7%",
-    borderWidth: 1,
+  outerContainer: {
+    flex: 1,
   },
+  container: {
+    flex: 1,
+  },
+  text: {
+    fontSize: 40,
+    alignSelf: "center",
+    fontFamily: "b",
+  },
+
 });
