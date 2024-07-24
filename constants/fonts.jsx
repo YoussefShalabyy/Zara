@@ -4,6 +4,7 @@ export function useCustomFonts() {
   const [loaded] = useFonts({
     a: require("../assets/fonts/PlaywriteBEVLG-Thin.ttf"),
     b: require("../assets/fonts/OPTIBodoni-Antiqua.otf"),
+    c: require("../assets/fonts/OpenSans-SemiBold.ttf"),
   });
   return loaded;
 }

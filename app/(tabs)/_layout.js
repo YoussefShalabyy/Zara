@@ -8,53 +8,52 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 
 export default function _layout() {
   return (
-    <Tabs>
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: "#D32F2F",
+        tabBarInactiveTintColor: "black",
+        headerShown: false,
+        tabBarLabel: "",
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          tabBarIcon: () => (
-            <SimpleLineIcons name="home" size={24} color="black" />
+          tabBarIcon: ({ color }) => (
+            <SimpleLineIcons name="home" size={24} color={color} />
           ),
-          tabBarLabel: "",
-          headerShown: false,
         }}
       />
       <Tabs.Screen
         name="search"
         options={{
-          tabBarIcon: () => <SimpleLineIcons name="magnifier" size={24} color="black" />,
-          tabBarLabel: "",
-          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <SimpleLineIcons name="menu" size={24} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="bag"
         options={{
-          tabBarIcon: () => (
-            <SimpleLineIcons name="bag" size={24} color="black" />
+          tabBarIcon: ({ color }) => (
+            <SimpleLineIcons name="bag" size={24} color={color} />
           ),
-          tabBarLabel: "",
-          headerShown: false,
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
-          tabBarIcon: () => (
-            <SimpleLineIcons name="user" size={24} color="black" />
+          tabBarIcon: ({ color }) => (
+            <SimpleLineIcons name="user" size={24} color={color} />
           ),
-          tabBarLabel: "",
-          headerShown: false,
         }}
       />
       <Tabs.Screen
         name="addItem"
         options={{
-          tabBarIcon: () => (
-            <SimpleLineIcons name="plus" size={24} color="black" />
+          tabBarIcon: ({ color }) => (
+            <SimpleLineIcons name="plus" size={24} color={color} />
           ),
-          tabBarLabel: "",
-          headerShown: false,
         }}
       />
     </Tabs>
