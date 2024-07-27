@@ -28,11 +28,19 @@ const categories = [
   { uri: require("../assets/categories/Baby.jpg"), title: "Baby" },
   { uri: require("../assets/categories/Home.jpg"), title: "Home" },
   { uri: require("../assets/categories/Beauty.jpg"), title: "Beauty" },
-  { uri: require("../assets/categories/Sustainability.jpg"), title: "Sustainability" },
+  {
+    uri: require("../assets/categories/Sustainability.jpg"),
+    title: "Sustainability",
+  },
   { uri: require("../assets/categories/Sale.jpg"), title: "Sale" },
 ];
-
-export { data, categories };
-
-
-
+const categories2 = [
+  { id: 1, name: "Women" },
+  { id: 2, name: "Men" },
+  { id: 3, name: "Baby" },
+  { id: 4, name: "Kids" },
+  { id: 5, name: "Home" },
+  { id: 6, name: "Sport" },
+  { id: 7, name: "Sale" },
+];
+export { data, categories, categories2 };

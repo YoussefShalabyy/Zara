@@ -3,7 +3,7 @@ import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome6 } from "@expo/vector-icons";
 
-export default function OffersContainer({ onPress, toggleOffers }) {
+export default function OffersContainer({ onPress, toggleOffers, screen }) {
   return (
     <View style={styles.offersContainer}>
       <Text style={[styles.offersText, { marginTop: 30 }]}>summer offers</Text>
@@ -16,13 +16,15 @@ export default function OffersContainer({ onPress, toggleOffers }) {
       <Text style={[styles.offersText, { marginTop: 40 }]}>
         offer valid on selected items while stock lasts.
       </Text>
-      <TouchableOpacity style={styles.plusIcon} onPress={onPress}>
-        {toggleOffers ? (
-          <AntDesign name="minus" size={30} color="white" />
-        ) : (
-          <AntDesign name="plus" size={30} color="white" />
-        )}
-      </TouchableOpacity>
+      {!screen && (
+        <TouchableOpacity style={styles.plusIcon} onPress={onPress}>
+          {toggleOffers ? (
+            <AntDesign name="minus" size={30} color="white" />
+          ) : (
+            <AntDesign name="plus" size={30} color="white" />
+          )}
+        </TouchableOpacity>
+      )}
     </View>
   );
 }

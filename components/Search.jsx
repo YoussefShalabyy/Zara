@@ -2,15 +2,25 @@ import { View, Text, StyleSheet, TextInput } from "react-native";
 import React from "react";
 import colors from "../constants/colors";
 import { Octicons } from "@expo/vector-icons";
+import { SimpleLineIcons } from "@expo/vector-icons";
 
 export default function Search(props) {
   return (
-    <View style={[styles.search, props.style]}>
-      <Octicons
-        name="search"
+    <View
+      style={[
+        styles.search,
+        props.style,
+        {
+          marginTop: props.screen && 10,
+          borderBottomColor: props.screen && "#C0C0C0",
+        },
+      ]}
+    >
+      <SimpleLineIcons
+        name="magnifier"
+        style={{ marginLeft: 15, marginRight: 5 }}
         size={24}
-        style={{ marginRight: 10 }}
-        color="black"
+        color="#505050"
       />
       <TextInput
         placeholder="Start typing to search"
@@ -28,16 +38,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 10,
     alignItems: "center",
-    borderColor: "grey",
-    marginTop: 10,
     backgroundColor: colors.LightGray,
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
+    borderBottomWidth: 0.6,
+    borderBottomColor: "black",
   },
   textInput: {
-    fontSize: 20,
+    fontSize: 18,
     flex: 1,
+    fontFamily: "c",
   },
 });
