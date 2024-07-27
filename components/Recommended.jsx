@@ -2,6 +2,7 @@ import { View, Text, FlatList, Image } from "react-native";
 import React, { useState, useEffect } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase/config";
+import ListDisplayer from "./ListDisplayer";
 
 export default function Recommended() {
   const [recommended, setRecommended] = useState([]);
@@ -35,27 +36,7 @@ export default function Recommended() {
       >
         Recommended For You
       </Text>
-      <FlatList
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        data={recommended}
-        renderItem={({ item }) => (
-          <View
-            style={{
-              width: 150,
-              marginLeft: 10,
-              maxHeight: 300,
-              marginBottom: 50,
-            }}
-          >
-            <Image source={{ uri: item.images[0] }} style={{ height: 230 }} />
-            <Text style={{ fontSize: 12, marginTop: 2 }}>{item.title}</Text>
-            <Text style={{ fontSize: 14, marginTop: 2, fontWeight: "700" }}>
-              EGP {item.price}.00
-            </Text>
-          </View>
-        )}
-      />
+      <ListDisplayer data={recommended} />
     </View>
   );
 }
