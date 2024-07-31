@@ -24,7 +24,6 @@ export default function Slider() {
   const [Text2, setText2] = useState(data[0]?.text2 || "");
 
   useEffect(() => {
-    // Initialize Text1 and Text2 with the text of the first item
     const initialItem = data[0] || {};
     setText1(initialItem.text1 || "");
     setText2(initialItem.text2 || "");
@@ -32,10 +31,7 @@ export default function Slider() {
 
   const renderItem = ({ item }) => (
     <View style={{ width }}>
-      <Image
-        source={item.uri }
-        style={{ width: width, height: IMAGE_HEIGHT }}
-      />
+      <Image source={item.uri} style={{ width: width, height: IMAGE_HEIGHT }} />
     </View>
   );
 
